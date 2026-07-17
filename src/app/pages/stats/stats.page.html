@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Stats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="stats-content">
+  <div class="overall-card">
+    <div class="overall-metric">
+      <ion-icon name="flame-outline"></ion-icon>
+      <div>
+        <div class="metric-value">{{ overallCurrent() }}</div>
+        <div class="metric-label">perfect day streak</div>
+      </div>
+    </div>
+    <div class="overall-metric">
+      <ion-icon name="trophy-outline"></ion-icon>
+      <div>
+        <div class="metric-value">{{ overallLongest() }}</div>
+        <div class="metric-label">longest ever</div>
+      </div>
+    </div>
+    <div class="overall-metric">
+      <div>
+        <div class="metric-value">{{ weekOverallPercent() }}%</div>
+        <div class="metric-label">this week</div>
+      </div>
+    </div>
+  </div>
+
+  <ion-list [inset]="true">
+    @for (s of stats(); track s.block.id) {
+      <ion-item>
+        <ion-icon slot="start" [name]="s.block.icon" [style.color]="s.block.color"></ion-icon>
+        <ion-label>
+          <h2>{{ s.block.name }}</h2>
+          <p>{{ s.current }}-day streak · longest {{ s.longest }} · {{ s.weekPercent }}% this week</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>

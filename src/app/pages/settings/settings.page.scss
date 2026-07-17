@@ -1,0 +1,22 @@
+.settings-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+}
+
+.hint {
+  display: block;
+  margin: 8px 8px 12px;
+  font-size: 13px;
+}
+
+.divider {
+  height: 12px;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 4px 32px;
+}

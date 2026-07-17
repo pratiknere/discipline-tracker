@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Today</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="today-content">
+  <div class="summary-row">
+    <div class="summary-chip">
+      <span class="summary-value">{{ completionPercent() }}%</span>
+      <span class="summary-label">today</span>
+    </div>
+    <div class="summary-chip">
+      <span class="summary-value">{{ perfectDayStreak() }}</span>
+      <span class="summary-label">day streak</span>
+    </div>
+  </div>
+
+  @for (block of blocks(); track block.id) {
+    <ion-card class="block-card" [style.--accent]="block.color">
+      <ion-card-content>
+        <div class="block-header">
+          <ion-icon [name]="block.icon"></ion-icon>
+          <div class="block-titles">
+            <div class="block-name">{{ block.name }}</div>
+            <div class="block-time">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ block.startTime }} – {{ block.endTime }}
+            </div>
+          </div>
+          @if (statusFor(block.id) !== 'pending') {
+            <ion-badge [color]="statusFor(block.id) === 'done' ? 'success' : statusFor(block.id) === 'partial' ? 'warning' : 'danger'">
+              {{ statusFor(block.id) }}
+            </ion-badge>
+          }
+        </div>
+
+        <div class="action-row">
+          <ion-button size="small" fill="outline" color="success" (click)="setStatus(block, 'done')">
+            <ion-icon slot="start" name="checkmark-circle"></ion-icon>
+            Done
+          </ion-button>
+          <ion-button size="small" fill="outline" color="warning" (click)="setStatus(block, 'partial')">
+            <ion-icon slot="start" name="remove-circle-outline"></ion-icon>
+            Partial
+          </ion-button>
+          <ion-button size="small" fill="outline" color="danger" (click)="setStatus(block, 'skipped')">
+            <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+            Skipped
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>

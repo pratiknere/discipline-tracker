@@ -1,0 +1,49 @@
+.calendar-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+}
+
+.range-segment {
+  margin-top: 8px;
+}
+
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin: 16px 4px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--ion-color-light, #e8e8e8);
+}
+
+.cell.level-0 {
+  background: #e8e8e8;
+}
+
+.cell.level-1 {
+  background: #ffca80;
+}
+
+.cell.level-2 {
+  background: #4caf7d;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+  margin: 8px 4px;
+  font-size: 12px;
+  opacity: 0.7;
+
+  .cell {
+    width: 14px;
+    height: 14px;
+  }
+}

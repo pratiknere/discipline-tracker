@@ -1,0 +1,35 @@
+.stats-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+}
+
+.overall-card {
+  display: flex;
+  justify-content: space-around;
+  background: var(--ion-color-light, #f4f4f4);
+  border-radius: 16px;
+  padding: 16px 8px;
+  margin: 8px 4px 16px;
+}
+
+.overall-metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+
+  ion-icon {
+    font-size: 22px;
+  }
+}
+
+.metric-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.metric-label {
+  font-size: 11px;
+  opacity: 0.65;
+}

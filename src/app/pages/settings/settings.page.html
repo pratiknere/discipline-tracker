@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="settings-content">
+  <ion-note class="hint">Edit your schedule below. Saving reschedules all reminders automatically.</ion-note>
+
+  <ion-list [inset]="true">
+    @for (block of blocks(); track block.id) {
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input [(ngModel)]="block.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Start time</ion-label>
+        <ion-input type="time" [(ngModel)]="block.startTime"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">End time</ion-label>
+        <ion-input type="time" [(ngModel)]="block.endTime"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Count toward streaks</ion-label>
+        <ion-toggle [(ngModel)]="block.trackStreak"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Reminder enabled</ion-label>
+        <ion-toggle [(ngModel)]="block.enabled"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-button color="danger" fill="clear" (click)="removeBlock(block.id)">
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Remove block
+        </ion-button>
+      </ion-item>
+      <div class="divider"></div>
+    }
+  </ion-list>
+
+  <div class="button-row">
+    <ion-button expand="block" fill="outline" (click)="addBlock()">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Add block
+    </ion-button>
+    <ion-button expand="block" (click)="saveAll()">
+      <ion-icon slot="start" name="save-outline"></ion-icon>
+      {{ saved() ? 'Saved!' : 'Save and reschedule reminders' }}
+    </ion-button>
+  </div>
+</ion-content>

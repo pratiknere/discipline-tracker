@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="calendar-content">
+  <ion-segment [value]="selectedBlockId()" (ionChange)="onBlockChange($any($event.detail.value))" scrollable>
+    @for (b of blocks(); track b.id) {
+      <ion-segment-button [value]="b.id">
+        <ion-label>{{ b.name }}</ion-label>
+      </ion-segment-button>
+    }
+  </ion-segment>
+
+  <ion-segment class="range-segment" [value]="rangeDays()" (ionChange)="onRangeChange($any($event.detail.value))">
+    <ion-segment-button [value]="30">
+      <ion-label>30 days</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="90">
+      <ion-label>90 days</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="heatmap">
+    @for (cell of cells(); track cell.date) {
+      <div class="cell" [class.level-0]="cell.level === 0" [class.level-1]="cell.level === 1" [class.level-2]="cell.level === 2" [title]="cell.date"></div>
+    }
+  </div>
+
+  <div class="legend">
+    <span>Less</span>
+    <div class="cell level-0"></div>
+    <div class="cell level-1"></div>
+    <div class="cell level-2"></div>
+    <span>More</span>
+  </div>
+</ion-content>
